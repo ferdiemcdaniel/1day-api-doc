@@ -1,12 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import SwaggerUI from "swagger-ui-react"
-import "swagger-ui-react/swagger-ui.css"
-import './index.css';
-
-const swaggerDocument = require('./swagger.json');
-export const App = () => <SwaggerUI spec={swaggerDocument} />
+import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
