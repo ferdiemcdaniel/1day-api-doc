@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "version" : "1.0.0",
+    "version" : "1.0.1",
     "title" : "1Day API",
     "termsOfService" : "https://1day.io/terms",
     "contact" : {
@@ -29,9 +29,6 @@
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Property"
-            },
             "examples" : {
               "application/json" : [ {
                 "type" : "Hotel",
@@ -42,10 +39,7 @@
                 "currency_code" : "USD",
                 "email" : "redkeep@bnb.net",
                 "url" : "someurl.net",
-                "property_code" : null,
-                "hotel_ids" : [
-                  "500"
-                ]
+                "hotel_ids" : [ "500" ]
               }, {
                 "type" : "Hotel",
                 "name" : "Winterfell Castle",
@@ -55,11 +49,11 @@
                 "currency_code" : "USD",
                 "email" : "winterfell@bnb.net",
                 "url" : "someurl.north",
-                "property_code" : null,
-                "hotel_ids" : [
-                  "400"
-                ]
+                "hotel_ids" : [ "400" ]
               } ]
+            },
+            "schema" : {
+              "$ref" : "#/definitions/Property"
             }
           }
         }
@@ -82,9 +76,6 @@
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Property"
-            },
             "examples" : {
               "application/json" : {
                 "type" : "Hotel",
@@ -95,11 +86,11 @@
                 "currency_code" : "USD",
                 "email" : "redkeep@bnb.net",
                 "url" : "someurl.net",
-                "property_code" : null,
-                "hotel_ids" : [
-                  "500"
-                ]
+                "hotel_ids" : [ "500" ]
               }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/Property"
             }
           },
           "400" : {
@@ -146,9 +137,6 @@
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/RoomType"
-            },
             "examples" : {
               "application/json" : [ {
                 "id" : "ox5QB7Az",
@@ -159,6 +147,9 @@
                 "name" : "Standard Rooms",
                 "room_id" : "502"
               } ]
+            },
+            "schema" : {
+              "$ref" : "#/definitions/RoomType"
             }
           },
           "400" : {
@@ -187,9 +178,6 @@
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/RoomType"
-            },
             "examples" : {
               "application/json" : [ {
                 "id" : "ox5QB7Az",
@@ -200,6 +188,9 @@
                 "name" : "Standard Rooms",
                 "room_id" : "502"
               } ]
+            },
+            "schema" : {
+              "$ref" : "#/definitions/RoomType"
             }
           },
           "400" : {
@@ -228,9 +219,6 @@
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Room"
-            },
             "examples" : {
               "application/json" : [ {
                 "id" : "LXRi6MzP6LUmGv6",
@@ -265,6 +253,9 @@
                 "description" : "",
                 "features" : [ "Eco Friendly", "Pets Allowed" ]
               } ]
+            },
+            "schema" : {
+              "$ref" : "#/definitions/Room"
             }
           },
           "400" : {
@@ -299,9 +290,6 @@
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "$ref" : "#/definitions/Room"
-            },
             "examples" : {
               "application/json" : {
                 "id" : "LXRi6MzP6LUmGv6",
@@ -320,6 +308,9 @@
                 "description" : "",
                 "features" : [ "Eco Friendly", "Pets Allowed" ]
               }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/Room"
             }
           },
           "400" : {
@@ -354,9 +345,6 @@
         "responses" : {
           "200" : {
             "description" : "An array of Rate object",
-            "schema" : {
-              "$ref" : "#/definitions/Room"
-            },
             "examples" : {
               "application/json" : [ {
                 "id" : "LXRi6MzP6LUmGv6",
@@ -375,6 +363,9 @@
                 "description" : "",
                 "features" : [ "Eco Friendly", "Pets Allowed" ]
               } ]
+            },
+            "schema" : {
+              "$ref" : "#/definitions/Room"
             }
           },
           "400" : {
@@ -393,238 +384,67 @@
         "operationId" : "post_reservation",
         "parameters" : [ {
           "in" : "body",
-          "name" : "user",
-          "description" : "The user to create."
-        }, {
-          "in" : "body",
-          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_id} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_id}/availabilty end-point\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate.",
           "name" : "reservation",
+          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_id} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_id}/availabilty end-point\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate.",
           "required" : true,
           "schema" : {
-            "type" : "object",
-            "properties" : {
-              "reservations" : {
-                "type" : "object",
-                "properties" : {
-                  "reservation" : {
-                    "type" : "array",
-                    "items" : {
-                      "type" : "object",
-                      "required" : [ "channel_ref_id", "company", "hotel_id", "booking_id", "site_id", "status" ],
-                      "properties" : {
-                        "deposit" : {
-                          "type" : "string"
-                        },
-                        "hotel_name" : {
-                          "type" : "string"
-                        },
-                        "commissionamount" : {
-                          "type" : "string"
-                        },
-                        "customer" : {
-                          "type" : "object",
-                          "required" : [ "first_name", "last_name", "email" ],
-                          "properties" : {
-                            "first_name" : {
-                              "type" : "string"
-                            },
-                            "last_name" : {
-                              "type" : "string"
-                            },
-                            "email" : {
-                              "type" : "string"
-                            },
-                            "telephone" : {
-                              "type" : "string"
-                            },
-                            "address" : {
-                              "type" : "string"
-                            },
-                            "city" : {
-                              "type" : "string"
-                            },
-                            "zip" : {
-                              "type" : "string"
-                            },
-                            "countrycode" : {
-                              "type" : "string"
-                            },
-                            "remarks" : {
-                              "type" : "string"
-                            }
-                          }
-                        },
-                        "room" : {
-                          "type" : "array",
-                          "items" : {
-                            "type" : "object",
-                            "required" : [ "id", "arrival_date", "departure_date", "guest_firstname", "guest_lastname" ],
-                            "properties" : {
-                              "numberofadult" : {
-                                "type" : "string"
-                              },
-                              "price" : {
-                                "type" : "array",
-                                "items" : {
-                                  "type" : "object",
-                                  "properties" : {
-                                    "date" : {
-                                      "type" : "string"
-                                    },
-                                    "rate_id" : {
-                                      "type" : "string"
-                                    },
-                                    "amount" : {
-                                      "type" : "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "id" : {
-                                "type" : "string"
-                              },
-                              "name" : {
-                                "type" : "string"
-                              },
-                              "guest_firstname" : {
-                                "type" : "string"
-                              },
-                              "guest_lastname" : {
-                                "type" : "string"
-                              },
-                              "arrival_date" : {
-                                "type" : "string"
-                              },
-                              "departure_date" : {
-                                "type" : "string"
-                              },
-                              "currencycode" : {
-                                "type" : "string"
-                              },
-                              "numberofguests" : {
-                                "type" : "string"
-                              },
-                              "numberofchild" : {
-                                "type" : "string"
-                              },
-                              "totalprice" : {
-                                "type" : "string"
-                              },
-                              "remarks" : {
-                                "type" : "string"
-                              }
-                            }
-                          }
-                        },
-                        "hotel_id" : {
-                          "type" : "string"
-                        },
-                        "booking_id" : {
-                          "type" : "string"
-                        },
-                        "channel_ref_id" : {
-                          "type" : "string"
-                        },
-                        "arrival_date" : {
-                          "type" : "string"
-                        },
-                        "departure_date" : {
-                          "type" : "string"
-                        },
-                        "currencycode" : {
-                          "type" : "string"
-                        },
-                        "company" : {
-                          "type" : "string"
-                        },
-                        "booking_date" : {
-                          "type" : "string"
-                        },
-                        "status" : {
-                          "type" : "string",
-                          "enum" : [ "cancel", "modify", "new" ]
-                        },
-                        "totalprice" : {
-                          "type" : "string"
-                        }
-                      }
-                    }
-                  }
-                },
-                "example" : [ {
-                  "reservations" : {
-                    "reservation" : [ {
-                      "deposit" : "0.00",
-                      "hotel_name" : "The Red Keep",
-                      "commissionamount" : "0.00",
-                      "customer" : {
-                        "first_name" : "Jon",
-                        "last_name" : "Snow",
-                        "email" : "jons@bnb.net",
-                        "telephone" : "123456789",
-                        "address" : "Castle Black",
-                        "city" : "Westeros",
-                        "zip" : "0001",
-                        "countrycode" : "GOT",
-                        "remarks" : "Mock User"
-                      },
-                      "room" : [ {
-                        "id" : "500",
-                        "name" : "Standard",
-                        "guest_firstname" : "Jon",
-                        "guest_lastname" : "Snow",
-                        "arrival_date" : "2019-10-01",
-                        "departure_date" : "2019-10-02",
-                        "currencycode" : "USD",
-                        "numberofguests" : 2,
-                        "numberofchild" : 0,
-                        "totalprice" : "42.00",
-                        "remarks" : "Mock Reservation",
-                        "numberofadult" : 2,
-                        "price" : [ {
-                          "date" : "2019-10-01",
-                          "rate_id" : "111111",
-                          "amount" : "20.00"
-                        }, {
-                          "date" : "2019-10-02",
-                          "rate_id" : "111112",
-                          "amount" : "22.00"
-                        } ]
-                      } ],
-                      "booking_id" : "WM4YHt4U7u1Y99lNyS6j",
-                      "hotel_id" : "12345",
-                      "currencycode" : "USD",
-                      "site_id" : "18-connectAPI",
-                      "company" : "CompanyName",
-                      "channel_ref_id" : "1",
-                      "booking_date" : "2019-01-01",
-                      "status" : "new",
-                      "totalprice" : "42"
-                    } ]
-                  }
-                } ]
-              }
-            }
+            "$ref" : "#/definitions/reservation"
           }
         } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
-            "schema" : {
-              "type" : "object",
-              "properties" : {
-                "reservation_id" : {
-                  "type" : "string"
-                },
-                "message" : {
-                  "type" : "string"
-                }
-              }
-            },
             "examples" : {
               "application/json" : {
                 "message" : "success"
               }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200"
+            }
+          },
+          "400" : {
+            "description" : "Invalid IDs supplied"
+          },
+          "404" : {
+            "description" : "No room is available on submitted parameters"
+          }
+        }
+      }
+    },
+    "/reservation/payment" : {
+      "post" : {
+        "tags" : [ "reservation" ],
+        "summary" : "Use this method to create or add a payment for existing bookings in 1Day",
+        "operationId" : "post_process_payment",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "reservation",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/reservation_1"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "examples" : {
+              "application/json" : {
+                "data" : [ {
+                  "booking_id" : "oSIgCLWUXdJaiygj9VsYOIyC2",
+                  "email" : "jons@bnb.net",
+                  "status" : "success",
+                  "message" : "Paid"
+                }, {
+                  "booking_id" : "F1oUNR05OnSkMyQCO8OG1zkyw",
+                  "email" : "jons@bnb.net",
+                  "status" : "success",
+                  "message" : "Paid"
+                } ]
+              }
+            },
+            "schema" : {
+              "$ref" : "#/definitions/inline_response_200"
             }
           },
           "400" : {
@@ -699,15 +519,7 @@
         "room_types" : {
           "type" : "array",
           "items" : {
-            "type" : "object",
-            "properties" : {
-              "id" : {
-                "type" : "string"
-              },
-              "name" : {
-                "type" : "string"
-              }
-            }
+            "$ref" : "#/definitions/Room_room_types"
           }
         },
         "num_beds" : {
@@ -743,13 +555,255 @@
           "type" : "string"
         }
       }
+    },
+    "reservation_reservations_customer" : {
+      "type" : "object",
+      "required" : [ "email", "first_name", "last_name" ],
+      "properties" : {
+        "first_name" : {
+          "type" : "string"
+        },
+        "last_name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "telephone" : {
+          "type" : "string"
+        },
+        "address" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "zip" : {
+          "type" : "string"
+        },
+        "countrycode" : {
+          "type" : "string"
+        },
+        "remarks" : {
+          "type" : "string"
+        }
+      }
+    },
+    "reservation_reservations_price" : {
+      "type" : "object",
+      "properties" : {
+        "date" : {
+          "type" : "string"
+        },
+        "rate_id" : {
+          "type" : "string"
+        },
+        "amount" : {
+          "type" : "string"
+        }
+      }
+    },
+    "reservation_reservations_room" : {
+      "type" : "object",
+      "required" : [ "arrival_date", "departure_date", "guest_firstname", "guest_lastname", "id" ],
+      "properties" : {
+        "numberofadult" : {
+          "type" : "string"
+        },
+        "price" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/reservation_reservations_price"
+          }
+        },
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "guest_firstname" : {
+          "type" : "string"
+        },
+        "guest_lastname" : {
+          "type" : "string"
+        },
+        "arrival_date" : {
+          "type" : "string"
+        },
+        "departure_date" : {
+          "type" : "string"
+        },
+        "currencycode" : {
+          "type" : "string"
+        },
+        "numberofguests" : {
+          "type" : "string"
+        },
+        "numberofchild" : {
+          "type" : "string"
+        },
+        "totalprice" : {
+          "type" : "string"
+        },
+        "remarks" : {
+          "type" : "string"
+        }
+      }
+    },
+    "reservation_reservations_reservation" : {
+      "type" : "object",
+      "required" : [ "booking_id", "channel_ref_id", "company", "hotel_id", "status" ],
+      "properties" : {
+        "deposit" : {
+          "type" : "string"
+        },
+        "hotel_name" : {
+          "type" : "string"
+        },
+        "commissionamount" : {
+          "type" : "string"
+        },
+        "customer" : {
+          "$ref" : "#/definitions/reservation_reservations_customer"
+        },
+        "room" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/reservation_reservations_room"
+          }
+        },
+        "hotel_id" : {
+          "type" : "string"
+        },
+        "booking_id" : {
+          "type" : "string"
+        },
+        "channel_ref_id" : {
+          "type" : "string"
+        },
+        "arrival_date" : {
+          "type" : "string"
+        },
+        "departure_date" : {
+          "type" : "string"
+        },
+        "currencycode" : {
+          "type" : "string"
+        },
+        "company" : {
+          "type" : "string"
+        },
+        "booking_date" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string",
+          "enum" : [ "cancel", "modify", "new" ]
+        },
+        "totalprice" : {
+          "type" : "string"
+        }
+      }
+    },
+    "reservation_reservations" : {
+      "type" : "object",
+      "properties" : {
+        "reservation" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/reservation_reservations_reservation"
+          }
+        }
+      },
+      "example" : "[{\"reservations\":{\"reservation\":[{\"deposit\":\"0.00\",\"hotel_name\":\"The Red Keep\",\"commissionamount\":\"0.00\",\"customer\":{\"first_name\":\"Jon\",\"last_name\":\"Snow\",\"email\":\"jons@bnb.net\",\"telephone\":\"123456789\",\"address\":\"Castle Black\",\"city\":\"Westeros\",\"zip\":\"0001\",\"countrycode\":\"GOT\",\"remarks\":\"Mock User\"},\"room\":[{\"id\":\"500\",\"name\":\"Standard\",\"guest_firstname\":\"Jon\",\"guest_lastname\":\"Snow\",\"arrival_date\":\"2019-10-01\",\"departure_date\":\"2019-10-02\",\"currencycode\":\"USD\",\"numberofguests\":2,\"numberofchild\":0,\"totalprice\":\"42.00\",\"remarks\":\"Mock Reservation\",\"numberofadult\":2,\"price\":[{\"date\":\"2019-10-01\",\"rate_id\":\"111111\",\"amount\":\"20.00\"},{\"date\":\"2019-10-02\",\"rate_id\":\"111112\",\"amount\":\"22.00\"}]}],\"booking_id\":\"WM4YHt4U7u1Y99lNyS6j\",\"hotel_id\":\"12345\",\"currencycode\":\"USD\",\"site_id\":\"18-connectAPI\",\"company\":\"CompanyName\",\"channel_ref_id\":\"1\",\"booking_date\":\"2019-01-01\",\"status\":\"new\",\"totalprice\":\"42\"}]}}]"
+    },
+    "reservation" : {
+      "type" : "object",
+      "properties" : {
+        "reservations" : {
+          "$ref" : "#/definitions/reservation_reservations"
+        }
+      }
+    },
+    "inline_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "reservation_id" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "reservationpayment_payments" : {
+      "type" : "object",
+      "required" : [ "booking_id", "email", "payment_fee", "status", "total_amount_paid", "transaction_num" ],
+      "properties" : {
+        "status" : {
+          "type" : "string",
+          "enum" : [ "success", "error" ]
+        },
+        "booking_id" : {
+          "type" : "string"
+        },
+        "total_amount_paid" : {
+          "type" : "number"
+        },
+        "transaction_num" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "payment_fee" : {
+          "type" : "number"
+        }
+      }
+    },
+    "reservation_1" : {
+      "type" : "object",
+      "properties" : {
+        "payments" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/reservationpayment_payments"
+          }
+        }
+      },
+      "example" : [ {
+        "payments" : [ {
+          "status" : "success",
+          "booking_id" : "some_random_id_oSIgCLWUXdJaiygj9VsYOIyC2",
+          "total_amount_paid" : 10,
+          "transaction_num" : "some_random_id_IF5FWWhrOjPCebc41NIu",
+          "email" : "jons@bnb.net",
+          "payment_fee" : 0
+        }, {
+          "status" : "success",
+          "booking_id" : "some_random_id_F1oUNR05OnSkMyQCO8OG1zkyw",
+          "total_amount_paid" : 110,
+          "transaction_num" : "some_random_id_xhfnSyLKDu19LAFiSDyS",
+          "email" : "jons@bnb.net",
+          "payment_fee" : 0
+        } ]
+      } ]
+    },
+    "Room_room_types" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        }
+      }
     }
   },
   "externalDocs" : {
     "description" : "Find out more about Swagger",
     "url" : "http://swagger.io"
-  },
-  "schemes" : [ "https", "http" ],
-  "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/ferdiemcdaniel/connect/1.0.0"
+  }
 }
