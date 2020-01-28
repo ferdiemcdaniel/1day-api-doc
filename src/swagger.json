@@ -141,11 +141,47 @@
               "application/json" : [ {
                 "id" : "ox5QB7Az",
                 "name" : "Clean Cottage",
-                "room_id" : "501"
+                "room_id" : "501",
+                "day_rates": {
+                  "0": 1000,
+                  "1": 1000,
+                  "2": 1000,
+                  "3": 1000,
+                  "4": 1000,
+                  "5": 1000,
+                  "6": 1000
+                },
+                "quantity": 2,
+                "room_photos": [
+                  {
+                    "name": "photo_name",
+                    "url": "photo_url",
+                    "enabled": false,
+                    "set": false
+                  }
+                ]
               }, {
                 "id" : "8MJkCF53",
                 "name" : "Standard Rooms",
-                "room_id" : "502"
+                "room_id" : "502",
+                "day_rates": {
+                  "0": 1000,
+                  "1": 1000,
+                  "2": 1000,
+                  "3": 1000,
+                  "4": 1000,
+                  "5": 1000,
+                  "6": 1000
+                },
+                "quantity": 2,
+                "room_photos": [
+                  {
+                    "name": "photo_name",
+                    "url": "photo_url",
+                    "enabled": false,
+                    "set": false
+                  }
+                ]
               } ]
             },
             "schema" : {
@@ -385,7 +421,7 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "reservation",
-          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_id} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_id}/availabilty end-point\nUse \"room\" : [{ \"name\" }] from \"name\" of /property/{property_id}/availabilty end-point for creation of Note\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate",
+          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_id} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_id}/availabilty end-point\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate.",
           "required" : true,
           "schema" : {
             "$ref" : "#/definitions/reservation"
@@ -826,13 +862,15 @@
           "booking_id" : "some_random_id_oSIgCLWUXdJaiygj9VsYOIyC2",
           "amount" : 10,
           "transaction_num" : "some_random_id_IF5FWWhrOjPCebc41NIu",
-          "email" : "jons@bnb.net"
+          "email" : "jons@bnb.net",
+          "payment_fee" : 0
         }, {
           "status" : "success",
           "booking_id" : "some_random_id_F1oUNR05OnSkMyQCO8OG1zkyw",
           "amount" : 110,
           "transaction_num" : "some_random_id_xhfnSyLKDu19LAFiSDyS",
-          "email" : "jons@bnb.net"
+          "email" : "jons@bnb.net",
+          "payment_fee" : 0
         } ]
       } ]
     },
