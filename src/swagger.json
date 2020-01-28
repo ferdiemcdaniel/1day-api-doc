@@ -218,11 +218,27 @@
               "application/json" : [ {
                 "id" : "ox5QB7Az",
                 "name" : "Clean Cottage",
-                "room_id" : "501"
+                "room_id" : "501",
+                "room_photos": [
+                  {
+                    "name": "photo_name",
+                    "url": "photo_url",
+                    "enabled": false,
+                    "set": false
+                  }
+                ]
               }, {
                 "id" : "8MJkCF53",
                 "name" : "Standard Rooms",
-                "room_id" : "502"
+                "room_id" : "502",
+                "room_photos": [
+                  {
+                    "name": "photo_name",
+                    "url": "photo_url",
+                    "enabled": false,
+                    "set": false
+                  }
+                ]
               } ]
             },
             "schema" : {
@@ -421,7 +437,7 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "reservation",
-          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_id} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_id}/availabilty end-point\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate.",
+          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_id} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_id}/availabilty end-point\nUse \"room\" : [{ \"name\" }] from \"name\" of /property/{property_id}/availabilty end-point to include creation first Note in booking.\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate.",
           "required" : true,
           "schema" : {
             "$ref" : "#/definitions/reservation"
