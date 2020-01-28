@@ -385,7 +385,7 @@
         "parameters" : [ {
           "in" : "body",
           "name" : "reservation",
-          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_id} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_id}/availabilty end-point\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate.",
+          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_id} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_id}/availabilty end-point\nUse \"room\" : [{ \"name\" }] from \"name\" of /property/{property_id}/availabilty end-point for creation of Note\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate",
           "required" : true,
           "schema" : {
             "$ref" : "#/definitions/reservation"
@@ -415,7 +415,7 @@
     "/reservation/payment" : {
       "post" : {
         "tags" : [ "reservation" ],
-        "summary" : "Use this method to create or add a payment for existing bookings in 1Day",
+        "summary" : "Use this method to create or add a payment for a booking in 1Day",
         "operationId" : "post_process_payment",
         "parameters" : [ {
           "in" : "body",
@@ -716,7 +716,58 @@
           }
         }
       },
-      "example" : "[{\"reservations\":{\"reservation\":[{\"deposit\":\"0.00\",\"hotel_name\":\"The Red Keep\",\"commissionamount\":\"0.00\",\"customer\":{\"first_name\":\"Jon\",\"last_name\":\"Snow\",\"email\":\"jons@bnb.net\",\"telephone\":\"123456789\",\"address\":\"Castle Black\",\"city\":\"Westeros\",\"zip\":\"0001\",\"countrycode\":\"GOT\",\"remarks\":\"Mock User\"},\"room\":[{\"id\":\"500\",\"name\":\"Standard\",\"guest_firstname\":\"Jon\",\"guest_lastname\":\"Snow\",\"arrival_date\":\"2019-10-01\",\"departure_date\":\"2019-10-02\",\"currencycode\":\"USD\",\"numberofguests\":2,\"numberofchild\":0,\"totalprice\":\"42.00\",\"remarks\":\"Mock Reservation\",\"numberofadult\":2,\"price\":[{\"date\":\"2019-10-01\",\"rate_id\":\"111111\",\"amount\":\"20.00\"},{\"date\":\"2019-10-02\",\"rate_id\":\"111112\",\"amount\":\"22.00\"}]}],\"booking_id\":\"WM4YHt4U7u1Y99lNyS6j\",\"hotel_id\":\"12345\",\"currencycode\":\"USD\",\"site_id\":\"18-connectAPI\",\"company\":\"CompanyName\",\"channel_ref_id\":\"1\",\"booking_date\":\"2019-01-01\",\"status\":\"new\",\"totalprice\":\"42\"}]}}]"
+      "example": [ {
+        "reservations": {
+          "reservation": [ {
+            "deposit": "0.00",
+            "hotel_name": "The Red Keep",
+            "commissionamount": "0.00",
+            "customer": {
+              "first_name": "Jon",
+              "last_name": "Snow",
+              "email": "jons@bnb.net",
+              "telephone": "123456789",
+              "address": "Castle Black",
+              "city": "Westeros",
+              "zip": "0001",
+              "countrycode": "GOT",
+              "remarks": "Mock User"
+            },
+            "room": [ {
+              "id": "500",
+              "name": "Standard",
+              "guest_firstname": "Jon",
+              "guest_lastname": "Snow",
+              "arrival_date": "2019-10-01",
+              "departure_date": "2019-10-02",
+              "currencycode": "USD",
+              "numberofguests": 2,
+              "numberofchild": 0,
+              "totalprice": "42.00",
+              "remarks": "Mock Reservation",
+              "numberofadult": 2,
+              "price": [ {
+                "date": "2019-10-01",
+                "rate_id": "111111",
+                "amount": "20.00"
+              }, {
+                "date": "2019-10-02",
+                "rate_id": "111112",
+                "amount": "22.00"
+              } ]
+            } ],
+            "booking_id": "WM4YHt4U7u1Y99lNyS6j",
+            "hotel_id": "12345",
+            "currencycode": "USD",
+            "site_id": "18-connectAPI",
+            "company": "CompanyName",
+            "channel_ref_id": "1",
+            "booking_date": "2019-01-01",
+            "status": "new",
+            "totalprice": "42"
+          } ]
+        }
+      } ]
     },
     "reservation" : {
       "type" : "object",
@@ -739,7 +790,7 @@
     },
     "reservationpayment_payments" : {
       "type" : "object",
-      "required" : [ "booking_id", "email", "payment_fee", "status", "total_amount_paid", "transaction_num" ],
+      "required" : [ "amount", "booking_id", "email", "status", "transaction_num" ],
       "properties" : {
         "status" : {
           "type" : "string",
@@ -748,7 +799,7 @@
         "booking_id" : {
           "type" : "string"
         },
-        "total_amount_paid" : {
+        "amount" : {
           "type" : "number"
         },
         "transaction_num" : {
@@ -756,9 +807,6 @@
         },
         "email" : {
           "type" : "string"
-        },
-        "payment_fee" : {
-          "type" : "number"
         }
       }
     },
@@ -776,17 +824,15 @@
         "payments" : [ {
           "status" : "success",
           "booking_id" : "some_random_id_oSIgCLWUXdJaiygj9VsYOIyC2",
-          "total_amount_paid" : 10,
+          "amount" : 10,
           "transaction_num" : "some_random_id_IF5FWWhrOjPCebc41NIu",
-          "email" : "jons@bnb.net",
-          "payment_fee" : 0
+          "email" : "jons@bnb.net"
         }, {
           "status" : "success",
           "booking_id" : "some_random_id_F1oUNR05OnSkMyQCO8OG1zkyw",
-          "total_amount_paid" : 110,
+          "amount" : 110,
           "transaction_num" : "some_random_id_xhfnSyLKDu19LAFiSDyS",
-          "email" : "jons@bnb.net",
-          "payment_fee" : 0
+          "email" : "jons@bnb.net"
         } ]
       } ]
     },
