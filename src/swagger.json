@@ -878,15 +878,13 @@
           "booking_id" : "some_random_id_oSIgCLWUXdJaiygj9VsYOIyC2",
           "amount" : 10,
           "transaction_num" : "some_random_id_IF5FWWhrOjPCebc41NIu",
-          "email" : "jons@bnb.net",
-          "payment_fee" : 0
+          "email" : "jons@bnb.net"
         }, {
           "status" : "success",
           "booking_id" : "some_random_id_F1oUNR05OnSkMyQCO8OG1zkyw",
           "amount" : 110,
           "transaction_num" : "some_random_id_xhfnSyLKDu19LAFiSDyS",
-          "email" : "jons@bnb.net",
-          "payment_fee" : 0
+          "email" : "jons@bnb.net"
         } ]
       } ]
     },
