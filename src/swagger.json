@@ -64,7 +64,7 @@
     "/property/{property_code}" : {
       "get" : {
         "tags" : [ "property" ],
-        "summary" : "Find more information about a property by its propertry code",
+        "summary" : "Find more information about a property.",
         "description" : "Returns a single property",
         "operationId" : "get_property_by_code",
         "produces" : [ "application/json", "application/xml" ],
