@@ -64,7 +64,7 @@
     "/property/{property_code}" : {
       "get" : {
         "tags" : [ "property" ],
-        "summary" : "Find more information about a property by its ID",
+        "summary" : "Find more information about a property by its propertry code",
         "description" : "Returns a single property",
         "operationId" : "get_property_by_code",
         "produces" : [ "application/json", "application/xml" ],
@@ -391,7 +391,7 @@
         "operationId" : "post_reservation",
         "parameters" : [ {
           "in" : "body",
-          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_id} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_id}/availabilty end-point\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate.",
+          "description" : "Use \"hotel_id\" from \"hotel_id\" of /property/{property_code} end-point\nUse \"room\" : [{ \"id\" }] from \"room_id\" of /property/{property_code}/availabilty end-point\n\"booking_id\" must be unique per booking if \"status\" is \"new\", otherwise 1Day will ignore it as a duplicate.",
           "name" : "reservation",
           "required" : true,
           "schema" : {
@@ -802,9 +802,6 @@
         },
         "num_beds" : {
           "type" : "number"
-        },
-        "property_id" : {
-          "type" : "string"
         },
         "room_seq" : {
           "type" : "number"
